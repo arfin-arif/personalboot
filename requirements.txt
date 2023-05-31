@@ -1,0 +1,5 @@
+openai
+flask
+langchain
+tiktoken
+chromadb

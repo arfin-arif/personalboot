@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AskPDF</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <img class="search-icon" src="{{ url_for('static', filename='images/icon.png') }}" alt="Search Icon">
+    <h1>AskPDF</h1>
+    <div class="search-box">
+      <form method="POST" action="/search" onsubmit="showLoading()">
+        <input type="text" name="query" placeholder="Enter your search query" required>
+        <button class="btn btn-search" type="submit" name="action" value="search">Search</button>
+      </form>
+    </div>
+    {% if search_result %}
+    <div class="result-box">
+      <h2>{{ search_title }}</h2>
+      <textarea rows="5" cols="50" readonly>{{ search_result }}</textarea>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
+    <p class="loading-text">GPT on its way to answer you...</p>
+  </div>
+
+  <script>
+    function showLoading() {
+      var loadingOverlay = document.getElementById('loadingOverlay');
+      loadingOverlay.style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
